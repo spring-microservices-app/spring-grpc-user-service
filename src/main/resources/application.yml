@@ -1,0 +1,29 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: user-service
+  active:
+    profiles: ${ACTIVE_PROFILE:local}
+  
+  data:
+    web:
+      pageable:
+        one-indexed-parameters: true
+        max-page-size: 200
+    mongodb:
+      uri: mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}/?retryWrites=true&w=majority&appName=Cluster0
+      database: ${MONGODB_DATABASE}
+      auto-index-creation: true
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+grpc:
+  client:
+    stock-service:
+      address: static://stock-service:9090
+      negotiationType: plaintext
