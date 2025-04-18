@@ -10,6 +10,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class StockClientService {
 
+    // "stockService" is the name of the gRPC service
+    // defined in the application.yml file under grpc.clients
+    // The name should match the service name in the gRPC server
     @GrpcClient("stockService")
     private StockTradingServiceGrpc.StockTradingServiceBlockingStub stockStub;
 
