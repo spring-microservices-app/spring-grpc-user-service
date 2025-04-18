@@ -56,12 +56,18 @@ public class UserController {
     public ResponseEntity<?> getStockInfo() {
         // Handle stock retrieval logic here
         String symbol = (String) "APL";
-        // StockResponse stock = stockClientService.getPrice(symbol);
-        // System.out.println("Stock got: " + stock);
+        
 
         String stockId = "12345";
+        String test = stockClientService.testConnection();
+
+        // OK OK
         String stockSymbol = stockClientService.getStockSymbol(stockId);
         System.out.println("Stock symbol: " + stockSymbol);
+
+        // OK OK 
+        StockResponse stock = stockClientService.getPrice(symbol);
+        System.out.println("Stock got: " + stock);
     
         double price = (double) 101.1;
         Map<String, Object> response = new HashMap<>();

@@ -18,6 +18,12 @@ public class StockClientService {
         return stockStub.getStockPrice(request);
     }
 
+    public String testConnection() {
+        StockRequest request = StockRequest.newBuilder().setStockSymbol("APL").build();
+        StockResponse response = stockStub.getStockPrice(request);
+        return "hello";
+    }
+
     public String getStockSymbol(String stockId) {
         return "AAPL"; 
     }

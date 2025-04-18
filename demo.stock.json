@@ -1,0 +1,18 @@
+[{
+  "_id": {
+    "$oid": "6800bd70654651625e03c953"
+  },
+  "stockSymbol": "APL",
+  "price": 100,
+  "lastUpdated": "2045-04-18T16:00:00Z",
+  "_class": "com.example.stockplus.entity.Stock"
+},
+{
+  "_id": {
+    "$oid": "6800bda5654651625e03c954"
+  },
+  "stockSymbol": "MCS",
+  "price": 230,
+  "lastUpdated": "2045-04-18T16:00:00Z",
+  "_class": "com.example.stockplus.entity.Stock"
+}]

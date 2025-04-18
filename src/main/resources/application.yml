@@ -24,6 +24,7 @@ eureka:
 
 grpc:
   client:
-    stock-service:
-      address: discovery://stock-service
+    stockService:
+      # address: discovery://stock-service
+      address: static://localhost:9090
       negotiationType: plaintext
