@@ -4,9 +4,9 @@ server:
 spring:
   application:
     name: user-service
-  active:
-    profiles: ${ACTIVE_PROFILE:local}
-  
+  profiles:
+    active: ${ACTIVE_PROFILE:local}
+
   data:
     web:
       pageable:
@@ -25,5 +25,5 @@ eureka:
 grpc:
   client:
     stock-service:
-      address: static://stock-service:9090
+      address: discovery://stock-service
       negotiationType: plaintext

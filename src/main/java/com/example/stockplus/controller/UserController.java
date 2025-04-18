@@ -21,10 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpHeaders;
 // import com.fasterxml.jackson.databind.JsonNode;
 
-// import com.example.stockplus.grpc.client.StockGrpcClient;
-// import com.example.stockplus.model.Stock;
-// import com.example.stockplus.model.User;
-// import com.example.stockplus.grpc.StockResponse;
+import com.example.stockplus.service.StockClientService;
+import com.example.stockplus.model.Stock;
+import com.example.stockplus.model.User;
+import com.example.stockplus.grpc.StockResponse;
 // import com.example.stockplus.grpc.StockRequest;
 // import com.example.stockplus.grpc.StockTradingServiceGrpc;
 // import com.example.stockplus.grpc.StockTradingServiceGrpc.StockTradingServiceBlockingStub;
@@ -34,12 +34,17 @@ import org.springframework.http.HttpHeaders;
 @RestController
 public class UserController {
 
-    @Autowired
-    private ApplicationContext applicationContext;
+    // @Autowired
+    // private ApplicationContext applicationContext;
 
     // @Autowired
     // @Qualifier("stockGrpcClient")
     // private StockGrpcClient stockGrpcClient;
+
+    @Autowired
+    @Qualifier("stockClientService")
+    private StockClientService stockClientService;
+
 
     @PostMapping("/user")
     public ResponseEntity<?> createUser(@RequestBody Map<String, Object> user) {
@@ -47,9 +52,28 @@ public class UserController {
         return ResponseEntity.status(HttpStatus.CREATED).body(user);
     }
 
-//     @GetMapping("/stock/{symbol}")
-//     public ResponseEntity<?> getStockInfo(@PathVariable String symbol) {
-//         StockResponse stock = stockGrpcClient.getPrice(symbol);
-//         return ResponseEntity.ok(stock);
-//     }
+    @GetMapping("/stock")
+    public ResponseEntity<?> getStockInfo() {
+        // Handle stock retrieval logic here
+        String symbol = (String) "APL";
+        // StockResponse stock = stockClientService.getPrice(symbol);
+        // System.out.println("Stock got: " + stock);
+
+        String stockId = "12345";
+        String stockSymbol = stockClientService.getStockSymbol(stockId);
+        System.out.println("Stock symbol: " + stockSymbol);
+    
+        double price = (double) 101.1;
+        Map<String, Object> response = new HashMap<>();
+        response.put("symbol", symbol);
+        response.put("price", price);
+        return ResponseEntity.ok(response);
+    }
+
+
+    // @GetMapping("/stock/{symbol}")
+    // public ResponseEntity<?> getStockInfo(@PathVariable String symbol) {
+    //     StockResponse stock = stockGrpcClient.getPrice(symbol);
+    //     return ResponseEntity.ok(stock);
+    // }
 }
